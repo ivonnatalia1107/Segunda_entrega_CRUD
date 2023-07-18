@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css"
+        integrity="sha512-ZnR2wlLbSbr8/c9AgLg3jQPAattCUImNsae6NHYnS9KrIwRdcY9DxFotXhNAKIKbAXlRnujIqUWoXXwqyFOeIQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Mi lista de tareas</title>
+</head>
+
+<body>
+
+    <!--- contenedor padre principal -->
+    <div class="container">
+
+        <!--- Contenedor donde se ingresan slas tareas (de aqui se recogen los datos para agregar a la lista)-->
+        <!--- funcionalidades: agregar tarea; prevenir accion por defecto; limpiar el area de ingreso de datos porsterior envio; alerta de campos vacios-->
+        <div class="task_to_add">
+
+            <form id="form"> <!-- se le asignara la funcion agregar al hacer click en el boton del formulario-->
+                <label for="post">Escribe la tarea pendiente</label>
+                <br>
+                <br>
+                <textarea name="post" id="input" cols="30" rows="10"></textarea>
+                <!-- De aqui extraeremos el valor a agregar en la lista-->
+                <br>
+                <br>
+                <div id="msg"></div> <!-- aqui aparecera la alerta sobre campos vacios-->
+                <button type="submit"> Agregar Tarea </button>
+            </form>
+
+        </div>
+
+        <!--- Contenedor donde se despliegan las tareas (aqui se agregan datos a una lista)-->
+        <!-- funcionalidades: editar y refrescar tarea; eliminar tarea; contador de tareas -->
+        <div class="task_display">
+            <h2>Tareas pendientes:</h2>
+            <div id="tasks">
+                <div>
+                    <p>Hello World1</p>
+                    <span class="plus_buttons">
+                        <i class="bi bi-trash3-fill"></i>
+                        <i class="bi bi-pencil-square"></i>
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!--- link para JS -->
+    <script src="script.js"></script>
+</body>
+
+</html>
