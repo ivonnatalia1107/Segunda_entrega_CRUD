@@ -7,6 +7,7 @@ let tasks = document.querySelector('#tasks');
 let taskToDo = {
     text: ""
 };
+let tasksToDo = [];
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -32,6 +33,14 @@ let acceptTask = () => {
     console.log(taskToDo);
 
     createTask();
+
+    /*
+    tasksToDo.push({taskToDo})
+    localStorage.setItem("tasksToDo", JSON.stringify(tasksToDo));
+    console.log(tasksToDo);
+    tasksToDo = JSON.parse(localStorage.getItem("tasksToDo")) || [];
+    console.log(tasksToDo); */
+
 };
 
 let createTask = () => {
@@ -57,6 +66,7 @@ input.value = e.parentElement.previousElementSibling.innerHTML;
 e.parentElement.parentElement.remove();
 console.log("se esta editando una tarea")
 };
+
 
 
 
