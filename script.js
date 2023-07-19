@@ -40,7 +40,7 @@ let createTask = () => {
     <p>${taskToDo.text}</p>
     <span class="plus_buttons"> 
     <i onClick="deleteTask(this)" class="bi bi-trash3-fill"></i>
-    <i class="bi bi-pencil-square"></i>
+    <i onclick="editTask(this)" class="bi bi-pencil-square"></i>
     </span>
     </div> 
     `;
@@ -49,6 +49,13 @@ let createTask = () => {
 
 let deleteTask = (e) => {
 e.parentElement.parentElement.remove();
+console.log("Una tarea fue eliminada")
+};
+
+let editTask = (e) => {
+input.value = e.parentElement.previousElementSibling.innerHTML;
+e.parentElement.parentElement.remove();
+console.log("se esta editando una tarea")
 };
 
 
