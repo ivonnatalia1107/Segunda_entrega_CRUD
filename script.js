@@ -2,10 +2,10 @@
 
 let form = document.querySelector('#form');
 let input = document.querySelector('#input');
-let msg= document.querySelector('#msg');
+let msg = document.querySelector('#msg');
 let tasks = document.querySelector('#tasks');
 let taskToDo = {
-    text : ""
+    text: ""
 };
 
 form.addEventListener("submit", (e) => {
@@ -24,15 +24,31 @@ let dataValidation = () => {
         msg.innerHTML = "";
         acceptTask();
     }
-}; 
+};
 
-let acceptTask = () => {;
-taskToDo["text"] = input.value
-console.log(taskToDo);
+let acceptTask = () => {
+    ;
+    taskToDo["text"] = input.value
+    console.log(taskToDo);
+
+    createTask();
 };
 
 let createTask = () => {
-    tasks.innerHTML += ``;
+    tasks.innerHTML += `
+    <div>
+    <p>${taskToDo.text}</p>
+    <span class="plus_buttons"> 
+    <i onClick="deleteTask(this)" class="bi bi-trash3-fill"></i>
+    <i class="bi bi-pencil-square"></i>
+    </span>
+    </div> 
+    `;
+    input.value = "";
+};
+
+let deleteTask = (e) => {
+e.parentElement.parentElement.remove();
 };
 
 
