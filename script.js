@@ -5,9 +5,9 @@ let input = document.querySelector('#input');
 let msg = document.querySelector('#msg');
 let tasks = document.querySelector('#tasks');
 let taskToDo = {
-    text: ""
+
 };
-let tasksToDo = [];
+
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -24,6 +24,7 @@ let dataValidation = () => {
         console.log("se ha agregado una tarea");
         msg.innerHTML = "";
         acceptTask();
+
     }
 };
 
@@ -33,13 +34,7 @@ let acceptTask = () => {
     console.log(taskToDo);
 
     createTask();
-
-    /*
-    tasksToDo.push({taskToDo})
-    localStorage.setItem("tasksToDo", JSON.stringify(tasksToDo));
-    console.log(tasksToDo);
-    tasksToDo = JSON.parse(localStorage.getItem("tasksToDo")) || [];
-    console.log(tasksToDo); */
+    storageData();
 
 };
 
@@ -57,18 +52,22 @@ let createTask = () => {
 };
 
 let deleteTask = (e) => {
-e.parentElement.parentElement.remove();
-console.log("Una tarea fue eliminada")
+    e.parentElement.parentElement.remove();
+    console.log("Una tarea fue eliminada")
 };
 
 let editTask = (e) => {
-input.value = e.parentElement.previousElementSibling.innerHTML;
-e.parentElement.parentElement.remove();
-console.log("se esta editando una tarea")
+    input.value = e.parentElement.previousElementSibling.innerHTML;
+    e.parentElement.parentElement.remove();
+    console.log("se esta editando una tarea")
 };
 
+let data = [];
+let storageData = () =>{
+    data.push({});
 
+    localStorage.setItem('data', JSON.stringify(data));
 
-
-
+console.log('Se almaceno la tarea en localStorage')
+}
 
