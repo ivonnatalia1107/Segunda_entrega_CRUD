@@ -1,5 +1,9 @@
+/* General */
+
 * {
     margin: 0;
+    cursor: pointer;
+    
 }
 
 body .container {
@@ -11,16 +15,62 @@ body .container {
     align-content: center;
 }
 
+
+/* Ingreso de datos */
+
 body .task_to_add {
 
     border: 3px solid black;
     display: flex;
     justify-content: center;
-    padding: 10%;
+    padding: 5%;
+}
+body #form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-body .task_to_add #input {
+body #input {
     height: 200px;
     width: 400px;
-    background-color: rgb(236, 242, 243);
 }
+
+
+
+/* Despliegue de tareas */
+
+body  #display_title{
+    text-align: center;
+    text-decoration: underline;
+    padding: 3%;
+}
+
+body .task_display {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+body .task_box {
+    border: black solid 2px;
+    border-radius: 10%;
+    width: 400px;
+    height: 210px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(218, 187, 238);
+    
+}
+
+body #tasks {
+    overflow:hidden;
+}
+
+

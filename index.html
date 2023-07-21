@@ -25,7 +25,9 @@
                 <h1 for="post">Mis tareas de adulto independiente</h1>
                 <br>
                 <br>
-                <textarea name="post" id="input" cols="30" rows="10" ></textarea>
+                <input id="title" type="text" placeholder="Título">
+                <br>
+                <textarea name="post" id="input" cols="30" rows="10" placeholder="Describela aquí"></textarea>
                 <!-- De aqui extraeremos el valor a agregar en la lista-->
                 <br>
                 <br>
@@ -37,14 +39,14 @@
 
         <!--- Contenedor donde se despliegan las tareas (aqui se agregan datos a una lista)-->
         <!-- funcionalidades: editar y refrescar tarea; eliminar tarea; contador de tareas -->
+
         <div class="task_display">
-            <h2>Tareas pendientes:</h2>
+            <h2 id="display_title">Tareas por realizar</h2>
             <div id="tasks">
 
             </div>
 
         </div>
-
     </div>
 
     <!--- link para JS -->

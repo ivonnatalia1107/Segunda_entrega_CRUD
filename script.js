@@ -2,6 +2,7 @@
 
 let form = document.querySelector('#form');
 let textInput = document.querySelector('#input');
+let textitle = document.querySelector('#title')
 let msg = document.querySelector('#msg');
 let tasks = document.querySelector('#tasks');
 
@@ -16,9 +17,9 @@ form.addEventListener("submit", (e) => {
 // validacion del ingreso de los datos en el input 
 
 let taskValidation = () => {
-    if (input.value === "") {
+    if (textInput.value === "" || textitle.value === "") {
         console.log("El suario no agrego ninguna tarea");
-        msg.innerHTML = "Debes agregar la menos una tarea";
+        msg.innerHTML = "Debes rellenar ambos campos";
     } else {
         console.log("se ha agregado una tarea");
         msg.innerHTML = "";
@@ -32,7 +33,8 @@ let taskToDo = [{}]; //almacenar objetos dentro de un arreglo
 
 let acceptTask = () => {
     taskToDo.push({
-        text: textInput.value,
+        text: textitle.value,
+        description: textInput.value,
     });
 
     localStorage.setItem("taskToDo", JSON.stringify(taskToDo));
@@ -46,16 +48,18 @@ let addTask = () => {
     tasks.innerHTML = "";
     taskToDo.map((x, y) => {
         return (tasks.innerHTML += `
-    <div class="p_style" id=${y}>
-          <input type="checkbox"><p>${x.text}</p>
+    <div class="task_box" id=${y}>
+          <h2>${x.text}</h2>
+          <p>${x.description}</p>
           <span class="options">
-            <i onClick= "editTask(this)" class="bi bi-pencil-square"></i>
+            <i onClick= "editTask(this);toTop()"  class="bi bi-pencil-square"></i>
             <i onClick ="deleteTask(this);addTask()" class="bi bi-trash3-fill"></i>
           </span>
-        </div>
+    </div>
     `);
     });
-    input.value = "";
+    textInput.value = "";
+    textitle.value = "";
 }
 
 // eliminar un elemento
@@ -71,11 +75,15 @@ let deleteTask = (e) => {
 
 let editTask = (e) => {
     let taskToEdit = e.parentElement.parentElement;
-    input.value = taskToEdit.children[0].innerHTML;
+    textitle.value = taskToEdit.children[0].innerHTML;
+    textInput.value = taskToEdit.children[1].innerHTML;
     deleteTask(e);
     console.log("se esta editando una tarea")
 };
 
+function toTop() {
+    window.scrollTo(0, 0)
+}
 
 (() => {
     taskToDo = JSON.parse(localStorage.getItem("taskToDo")) || []
