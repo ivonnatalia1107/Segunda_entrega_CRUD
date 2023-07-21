@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+}
+
+body .container {
+    background-color: rgba(8, 180, 180, 0.5);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+body .task_to_add {
+
+    border: 3px solid black;
+    display: flex;
+    justify-content: center;
+    padding: 10%;
+}
+
+body .task_to_add #input {
+    height: 200px;
+    width: 400px;
+    background-color: rgb(236, 242, 243);
+}

@@ -5,26 +5,30 @@ let textInput = document.querySelector('#input');
 let msg = document.querySelector('#msg');
 let tasks = document.querySelector('#tasks');
 
+//añadir un evento cuando el formulario de envie 
+
 form.addEventListener("submit", (e) => {
     e.preventDefault();
     console.log("Se hizo click en el formulario");
-
     taskValidation();
 });
 
+// validacion del ingreso de los datos en el input 
+
 let taskValidation = () => {
     if (input.value === "") {
-        msg.innerHTML = "Debes agregar la menos una tarea";
         console.log("El suario no agrego ninguna tarea");
+        msg.innerHTML = "Debes agregar la menos una tarea";
     } else {
         console.log("se ha agregado una tarea");
         msg.innerHTML = "";
         acceptTask();
-
     }
 };
 
-let taskToDo = [{}];
+// recoger los datos aceptados previamente  
+
+let taskToDo = [{}]; //almacenar objetos dentro de un arreglo 
 
 let acceptTask = () => {
     taskToDo.push({
@@ -33,16 +37,17 @@ let acceptTask = () => {
 
     localStorage.setItem("taskToDo", JSON.stringify(taskToDo));
     console.log(taskToDo);
-    // storageTask();
     addTask();
 };
+
+// agregar los datos recolectados a un template y darle una posición para poder invocarlos //hacer que el formulario vuelva a blanco 
 
 let addTask = () => {
     tasks.innerHTML = "";
     taskToDo.map((x, y) => {
         return (tasks.innerHTML += `
-    <div id=${y}>
-          <p>${x.text}</p>
+    <div class="p_style" id=${y}>
+          <input type="checkbox"><p>${x.text}</p>
           <span class="options">
             <i onClick= "editTask(this)" class="bi bi-pencil-square"></i>
             <i onClick ="deleteTask(this);addTask()" class="bi bi-trash3-fill"></i>
@@ -53,12 +58,16 @@ let addTask = () => {
     input.value = "";
 }
 
+// eliminar un elemento
+
 let deleteTask = (e) => {
     e.parentElement.parentElement.remove();
     taskToDo.splice(e.parentElement.parentElement.id, 1);
     localStorage.setItem("taskToDo", JSON.stringify(taskToDo));
-    console.log("Una tarea fue eliminada")
+    console.log("taskToDo")
 };
+
+// editar tarea, eliminar la antigua, desplegar la nueva 
 
 let editTask = (e) => {
     let taskToEdit = e.parentElement.parentElement;
@@ -68,62 +77,8 @@ let editTask = (e) => {
 };
 
 
-//let storageTask = () => {
-
-//    localStorage.setItem("taskToDo", JSON.stringify(taskToDo));
-//}
-
 (() => {
     taskToDo = JSON.parse(localStorage.getItem("taskToDo")) || []
     console.log(taskToDo)
     addTask();
 })();
-/*
-let getTask = () => {
-    let savedTask = localStorage.getItem('taskToDo');
-
-  if (savedTask) {
-        taskToDo = JSON.parse(savedTask);
-        showTask();
-    } 
-    
-} */
-
-/*let showTask = () => {
-    tasks.innerHTML = '';
-    taskToDo.forEach(task => {
-        tasks.innerHTML += `
-        <div>
-        <p>${task}</p>
-        <span class="plus_buttons"> 
-        <i onClick="deleteTask(this)" class="bi bi-trash3-fill"></i>
-        <i onclick="editTask(this)" class="bi bi-pencil-square"></i>
-        </span>
-        </div> 
-        `;
-    });
-}
-
-window.addEventListener('load', showTask)*/
-
-
-
-
-/*
-let acceptAddTask = () => {
-
-    let task = input.value;
-    taskToDo.push(task);
-    console.log(task);
-    tasks.innerHTML += `
-    <div>
-    <p>${task}</p>
-    <span class="plus_buttons"> 
-    <i onClick="deleteTask(this)" class="bi bi-trash3-fill"></i>
-    <i onclick="editTask(this)" class="bi bi-pencil-square"></i>
-    </span>
-    </div> 
-    `;
-    input.value = "";
-    storageTask();
-};  */
