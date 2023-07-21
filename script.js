@@ -1,13 +1,9 @@
 //Definicion de variables a utilizar 
 
 let form = document.querySelector('#form');
-let input = document.querySelector('#input');
+let textInput = document.querySelector('#input');
 let msg = document.querySelector('#msg');
 let tasks = document.querySelector('#tasks');
-let taskList =document.querySelector('p');
-
-let taskToDo = []
-
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -23,14 +19,100 @@ let taskValidation = () => {
     } else {
         console.log("se ha agregado una tarea");
         msg.innerHTML = "";
-        acceptAddTask();
+        acceptTask();
 
     }
 };
 
-let acceptAddTask = () => {
+let taskToDo = [{}];
+
+let acceptTask = () => {
+    taskToDo.push({
+        text: textInput.value,
+    });
+
+    localStorage.setItem("taskToDo", JSON.stringify(taskToDo));
+    console.log(taskToDo);
+    // storageTask();
+    addTask();
+};
+
+let addTask = () => {
+    tasks.innerHTML = "";
+    taskToDo.map((x, y) => {
+        return (tasks.innerHTML += `
+    <div id=${y}>
+          <p>${x.text}</p>
+          <span class="options">
+            <i onClick= "editTask(this)" class="bi bi-pencil-square"></i>
+            <i onClick ="deleteTask(this);addTask()" class="bi bi-trash3-fill"></i>
+          </span>
+        </div>
+    `);
+    });
+    input.value = "";
+}
+
+let deleteTask = (e) => {
+    e.parentElement.parentElement.remove();
+    taskToDo.splice(e.parentElement.parentElement.id, 1);
+    localStorage.setItem("taskToDo", JSON.stringify(taskToDo));
+    console.log("Una tarea fue eliminada")
+};
+
+let editTask = (e) => {
+    let taskToEdit = e.parentElement.parentElement;
+    input.value = taskToEdit.children[0].innerHTML;
+    deleteTask(e);
+    console.log("se esta editando una tarea")
+};
+
+
+//let storageTask = () => {
+
+//    localStorage.setItem("taskToDo", JSON.stringify(taskToDo));
+//}
+
+(() => {
+    taskToDo = JSON.parse(localStorage.getItem("taskToDo")) || []
+    console.log(taskToDo)
+    addTask();
+})();
+/*
+let getTask = () => {
+    let savedTask = localStorage.getItem('taskToDo');
+
+  if (savedTask) {
+        taskToDo = JSON.parse(savedTask);
+        showTask();
+    } 
     
-    const task = input.value
+} */
+
+/*let showTask = () => {
+    tasks.innerHTML = '';
+    taskToDo.forEach(task => {
+        tasks.innerHTML += `
+        <div>
+        <p>${task}</p>
+        <span class="plus_buttons"> 
+        <i onClick="deleteTask(this)" class="bi bi-trash3-fill"></i>
+        <i onclick="editTask(this)" class="bi bi-pencil-square"></i>
+        </span>
+        </div> 
+        `;
+    });
+}
+
+window.addEventListener('load', showTask)*/
+
+
+
+
+/*
+let acceptAddTask = () => {
+
+    let task = input.value;
     taskToDo.push(task);
     console.log(task);
     tasks.innerHTML += `
@@ -43,35 +125,5 @@ let acceptAddTask = () => {
     </div> 
     `;
     input.value = "";
-    storagetask();
-};
-
-let deleteTask = (e) => {
-    e.parentElement.parentElement.remove();
-    console.log("Una tarea fue eliminada")
-};
-
-let editTask = (e) => {
-    input.value = e.parentElement.previousElementSibling.innerHTML;
-    e.parentElement.parentElement.remove();
-    console.log("se esta editando una tarea")
-};
-
-
-let storagetask = () =>{
-
-    localStorage.setItem('taskAdded', JSON.stringify(taskToDo));
-
-console.log('Se almaceno la tarea en localStorage')
-}
-
-let getTask = () => {
-    let savedTask = localStorage.getItem('taskToDo');
-    if (savedTask) {
-        taskToDo = JSON.parse(taskToDo)
-    }
-    
-}
-
-window.addEventListener('load', getTask)
-
+    storageTask();
+};  */
