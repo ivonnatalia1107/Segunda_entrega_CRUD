@@ -14,32 +14,25 @@
 
 <body>
 
-    <!--- contenedor padre principal -->
     <div class="container">
 
-        <!--- Contenedor donde se ingresan slas tareas (de aqui se recogen los datos para agregar a la lista)-->
-        <!--- funcionalidades: agregar tarea; prevenir accion por defecto; limpiar el area de ingreso de datos porsterior envio; alerta de campos vacios-->
         <div class="task_to_add">
 
-            <form id="form"> <!-- se le asignara la funcion agregar al hacer click en el boton del formulario-->
+            <form id="form"> 
                 <h1 for="post">Mis tareas de adulto independiente</h1>
                 <br>
                 <br>
                 <input id="title" type="text" placeholder="Título">
                 <br>
                 <textarea name="post" id="input" cols="30" rows="10" placeholder="Describela aquí"></textarea>
-                <!-- De aqui extraeremos el valor a agregar en la lista-->
                 <br>
                 <br>
                 <div id="msg"></div> 
-                <br><!-- aqui aparecera la alerta sobre campos vacios-->
+                <br>
                 <button type="submit"> Agregar Tarea </button>
             </form>
 
         </div>
-
-        <!--- Contenedor donde se despliegan las tareas (aqui se agregan datos a una lista)-->
-        <!-- funcionalidades: editar y refrescar tarea; eliminar tarea; contador de tareas -->
 
         <div class="task_display">
             <h2 id="display_title">Tareas por realizar</h2>
@@ -50,7 +43,6 @@
         </div>
     </div>
 
-    <!--- link para JS -->
     <script src="script.js"></script>
 </body>
 

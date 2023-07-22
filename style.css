@@ -1,4 +1,3 @@
-/* General */
 
 @import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@1,700&family=Prompt:wght@100&display=swap');
 
@@ -18,9 +17,6 @@ body .container {
     justify-content: center;
     align-content: center;
 }
-
-
-/* Ingreso de datos */
 
 body .task_to_add {
 
@@ -79,9 +75,6 @@ body #msg {
     font-size: xx-large;
 }
 
-
-/* Despliegue de tareas */
-
 body #display_title {
     text-align: center;
     text-decoration: underline;
@@ -110,8 +103,6 @@ body .task_box {
     background-color: #ffccd5;
 
 }
-
-
 
 body #tasks {
     overflow: hidden;
