@@ -20,7 +20,6 @@ body .container {
 
 body .task_to_add {
 
-    border: 3px solid black;
     display: flex;
     justify-content: center;
     padding: 5%;
@@ -87,7 +86,7 @@ body .task_display {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-border: black solid 2px;
+
 }
 
 body .task_box {
