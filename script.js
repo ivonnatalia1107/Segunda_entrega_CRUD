@@ -19,9 +19,9 @@ form.addEventListener("submit", (e) => {
 let taskValidation = () => {
     if (textInput.value === "" || textitle.value === "") {
         console.log("El suario no agrego ninguna tarea");
-        msg.innerHTML = "Debes rellenar ambos campos";
+        msg.innerHTML = "Debes rellenar ambos campos!";
     } else {
-        console.log("se ha agregado una tarea");
+        console.log("se agrego la tarea");
         msg.innerHTML = "";
         acceptTask();
     }
@@ -38,7 +38,7 @@ let acceptTask = () => {
     });
 
     localStorage.setItem("taskToDo", JSON.stringify(taskToDo));
-    console.log(taskToDo);
+    console.log(textitle.value);
     addTask();
 };
 
@@ -52,7 +52,7 @@ let addTask = () => {
           <h2>${x.text}</h2>
           <p>${x.description}</p>
           <span class="options">
-            <i onClick= "editTask(this);toTop()"  class="bi bi-pencil-square"></i>
+            <i onClick= "editTask(this);toTop()"  class="bi bi-pencil-square" ></i>
             <i onClick ="deleteTask(this);addTask()" class="bi bi-trash3-fill"></i>
           </span>
     </div>
@@ -68,7 +68,7 @@ let deleteTask = (e) => {
     e.parentElement.parentElement.remove();
     taskToDo.splice(e.parentElement.parentElement.id, 1);
     localStorage.setItem("taskToDo", JSON.stringify(taskToDo));
-    console.log("taskToDo")
+    console.log("Se ha eliminado la tarea")
 };
 
 // editar tarea, eliminar la antigua, desplegar la nueva 
@@ -78,7 +78,7 @@ let editTask = (e) => {
     textitle.value = taskToEdit.children[0].innerHTML;
     textInput.value = taskToEdit.children[1].innerHTML;
     deleteTask(e);
-    console.log("se esta editando una tarea")
+    console.log("Edición en curso")
 };
 
 function toTop() {
@@ -87,6 +87,5 @@ function toTop() {
 
 (() => {
     taskToDo = JSON.parse(localStorage.getItem("taskToDo")) || []
-    console.log(taskToDo)
     addTask();
 })();
